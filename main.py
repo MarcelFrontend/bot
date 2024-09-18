@@ -16,7 +16,7 @@ lastKeypressConfig = {
     down: False,
     right: False,
 }
-delayBetweenInputs = 0.08
+delayBetweenInputs = 0.1
 road = []
 speed = 0
 
@@ -54,7 +54,7 @@ def draw_detection_area(minimap, area):
     x2, y2 = x1 + w, y1 + h
     cv2.rectangle(minimap, (x1, y1), (x2, y2), (255, 0, 0), 2)
 
-def changeKeyState(newPressConfig):
+def changeKeyState(newPressConfig, blue_line_points):
     global speed, frame, lastKeypressConfig
 
     pressed = {
@@ -133,7 +133,7 @@ if __name__ == "__main__":
         aiWidth = int(width / 2)
         frame = cv2.resize(screen.copy(), (aiWidth, aiHeight))
 
-        speed_region = (69, 388, 123, 414)
+        speed_region = (38, 435, 110, 470)
         x1, y1, x2, y2 = speed_region
         speed_image = frame[y1:y2, x1:x2]
 
@@ -142,8 +142,8 @@ if __name__ == "__main__":
 
         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
-        minimap_center_x = int(aiWidth * 78 / 100)
-        minimap_center_y = int(aiHeight * 73 / 100)
+        minimap_center_x = int(aiWidth * 91.5 / 100)
+        minimap_center_y = int(aiHeight * 83 / 100)
         minimap_size = 34
 
         x1_mini = max(minimap_center_x - minimap_size, 0)
@@ -169,7 +169,7 @@ if __name__ == "__main__":
             left: False,
             right: False,
             nitro: False
-        })
+        }, blue_line_points)
 
         cv2.imshow('Full Frame', frame)
 
