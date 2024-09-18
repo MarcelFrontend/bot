@@ -164,11 +164,11 @@ if __name__ == "__main__":
         cv2.putText(frame, f'{speed}', (78, 360), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 3)
 
         changeKeyState({
-            up: False,  # Przykładowa konfiguracja, aktualizuj zgodnie z rzeczywistym stanem
-            down: False,
-            left: False,
-            right: False,
-            nitro: False
+            up: speed < speedLimit,
+            down: speed >= speedLimit * 12 / 10,
+            left: False,  # Przygotuj logikę do obsługi lewego kierunku
+            right: False,  # Przygotuj logikę do obsługi prawego kierunku
+            nitro: speed < speedLimit * 8 / 10
         }, blue_line_points)
 
         cv2.imshow('Full Frame', frame)
